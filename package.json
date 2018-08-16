@@ -1,0 +1,36 @@
+{
+	"name": "@sprucelabs/semantic-release",
+	"publishConfig": {
+		"access": "public"
+	},
+	"version": "1.0.0",
+	"description": "Sprucelabs standards for semantic releases",
+	"main": "index.js",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sprucelabsai/sprucelabs-semantic-release.git"
+	},
+	"author": "Sprucelabs",
+	"contributors": [
+		{
+			"name": "Ken Goldfarb",
+			"email": "ken@sprucelabs.ai"
+		}
+	],
+	"engines": {
+		"node": ">=8"
+	},
+	"bugs": {
+		"url": "https://github.com/sprucelabsai/sprucelabs-semantic-release/issues"
+	},
+	"devDependencies": {
+		"prettier": "^1.14.2"
+	},
+	"peerDependencies": {
+		"@semantic-release/changelog": "^3.0.0",
+		"@semantic-release/git": "^7.0.1",
+		"conventional-changelog-sprucelabs": "^1.0.0",
+		"semantic-release": "^15.9.8"
+	}
+}
