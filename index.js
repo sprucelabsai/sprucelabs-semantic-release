@@ -28,7 +28,6 @@ module.exports = options => {
 				path: '@semantic-release/changelog',
 				changelogFile: options.changelogFile || 'CHANGELOG.md'
 			},
-			'@semantic-release/release-notes-generator',
 			'@semantic-release/npm',
 			'@semantic-release/git'
 		],
