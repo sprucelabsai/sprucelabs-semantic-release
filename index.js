@@ -16,7 +16,7 @@ module.exports = options => {
 	}
 
 	return {
-		branch: options.branch || 'dev',
+		branches: options.branches || ['dev'],
 		npmPublish: options.npmPublish === true,
 		publishConfig: {
 			registry: 'https://registry.npmjs.org/',
