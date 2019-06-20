@@ -38,9 +38,12 @@ module.exports = options => {
 	if (options.npmPublish === true) {
 		publish.unshift('@semantic-release/npm')
 		verifyConditions.unshift('@semantic-release/npm')
-		prepare.push('@semantic-release/npm')
-		plugins.push('@semantic-release/npm')
 	}
+	plugins.push([
+		'@semantic-release/npm',
+		{ npmPublish: options.npmPublish === true }
+	])
+	prepare.push('@semantic-release/npm')
 
 	prepare.push('@semantic-release/git')
 	plugins.push('@semantic-release/git')
