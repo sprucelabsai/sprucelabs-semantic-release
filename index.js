@@ -43,6 +43,7 @@ module.exports = options => {
 	}
 
 	prepare.push('@semantic-release/git')
+	plugins.push('@semantic-release/git')
 	plugins.push('@semantic-release/github')
 
 	return {
