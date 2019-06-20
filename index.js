@@ -3,10 +3,19 @@ module.exports = options => {
 		options = {}
 	}
 
+	const branches = options.branches || [
+		'master',
+		{ name: 'alpha', prerelease: true },
+		{ name: 'qa', prerelease: true },
+		{ name: 'dev', prerelease: true }
+	]
+
 	const currentBranch = require('child_process')
 		.execSync('git rev-parse --abbrev-ref HEAD')
 		.toString()
 		.trim()
+
+	const isReleaseBranch = branches.find(b => b === currentBranch)
 
 	const verifyConditions = [
 		'@semantic-release/changelog',
@@ -22,41 +31,32 @@ module.exports = options => {
 		'@semantic-release/release-notes-generator'
 	]
 
-	if (options.changelogBranches) {
-		const changelogForThisBranch = options.changelogBranches.find(
-			b => b === currentBranch
-		)
-		if (changelogForThisBranch) {
-			// plugins.push('@semantic-release/release-notes-generator')
-			prepare.push({
-				path: '@semantic-release/changelog',
-				changelogFile: options.changelogFile || 'CHANGELOG.md'
-			})
-		}
+	// Only bump the package.json version and write the changelog if this is a release branch
+	if (isReleaseBranch) {
+		prepare.push({
+			path: '@semantic-release/changelog',
+			changelogFile: options.changelogFile || 'CHANGELOG.md'
+		})
+
+		// NPM plugin handles bumping the package.json version
+		plugins.push([
+			'@semantic-release/npm',
+			{ npmPublish: options.npmPublish === true }
+		])
+		prepare.push('@semantic-release/npm')
 	}
 
 	if (options.npmPublish === true) {
 		publish.unshift('@semantic-release/npm')
 		verifyConditions.unshift('@semantic-release/npm')
 	}
-	plugins.push([
-		'@semantic-release/npm',
-		{ npmPublish: options.npmPublish === true }
-	])
-	prepare.push('@semantic-release/npm')
 
 	prepare.push('@semantic-release/git')
 	plugins.push('@semantic-release/git')
 	plugins.push('@semantic-release/github')
 
 	return {
-		branches: options.branches || [
-			'master',
-			{ name: 'alpha', prerelease: true },
-			{ name: 'qa', prerelease: true },
-			{ name: 'dev', prerelease: true }
-		],
-		npmPublish: options.npmPublish === true,
+		branches,
 		plugins,
 		publishConfig: {
 			registry: 'https://registry.npmjs.org/',
