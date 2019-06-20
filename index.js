@@ -15,21 +15,23 @@ module.exports = options => {
 
 	const publish = ['@semantic-release/github']
 
-	const prepare = [
-		{
-			path: '@semantic-release/changelog',
-			changelogFile: options.changelogFile || 'CHANGELOG.md'
-		}
-	]
+	const prepare = []
 
-	const plugins = ['@semantic-release/commit-analyzer']
+	const plugins = [
+		'@semantic-release/commit-analyzer',
+		'@semantic-release/release-notes-generator'
+	]
 
 	if (options.changelogBranches) {
 		const changelogForThisBranch = options.changelogBranches.find(
 			b => b === currentBranch
 		)
 		if (changelogForThisBranch) {
-			plugins.push('@semantic-release/release-notes-generator')
+			// plugins.push('@semantic-release/release-notes-generator')
+			prepare.push({
+				path: '@semantic-release/changelog',
+				changelogFile: options.changelogFile || 'CHANGELOG.md'
+			})
 		}
 	}
 
