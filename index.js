@@ -34,7 +34,8 @@ module.exports = options => {
 
 	return {
 		branches: options.branches || [
-			'master',
+			{ name: 'master', prerelease: true },
+			{ name: 'alpha', prerelease: true },
 			'qa',
 			{ name: 'dev', prerelease: true }
 		],
