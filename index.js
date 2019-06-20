@@ -3,6 +3,11 @@ module.exports = options => {
 		options = {}
 	}
 
+	const currentBranch = require('child_process')
+		.execSync('git rev-parse --abbrev-ref HEAD')
+		.toString()
+		.trim()
+
 	const verifyConditions = [
 		'@semantic-release/changelog',
 		'@semantic-release/github'
@@ -17,10 +22,16 @@ module.exports = options => {
 		}
 	]
 
-	const plugins = [
-		'@semantic-release/commit-analyzer',
-		'@semantic-release/release-notes-generator'
-	]
+	const plugins = ['@semantic-release/commit-analyzer']
+
+	if (options.changelogBranches) {
+		const changelogForThisBranch = options.changelogBranches.find(
+			b => b === currentBranch
+		)
+		if (changelogForThisBranch) {
+			plugins.push('@semantic-release/release-notes-generator')
+		}
+	}
 
 	if (options.npmPublish === true) {
 		publish.unshift('@semantic-release/npm')
@@ -34,9 +45,9 @@ module.exports = options => {
 
 	return {
 		branches: options.branches || [
-			{ name: 'master', prerelease: true },
+			'master',
 			{ name: 'alpha', prerelease: true },
-			'qa',
+			{ name: 'qa', prerelease: true },
 			{ name: 'dev', prerelease: true }
 		],
 		npmPublish: options.npmPublish === true,
@@ -65,7 +76,7 @@ module.exports = options => {
 				{ type: 'feat', release: 'minor' },
 				{ type: 'minor', release: 'minor' },
 
-				// Custom default catch-all, treat it like
+				// Custom default catch-all, treat it as a patch version
 				{ release: 'patch' }
 			]
 		}
