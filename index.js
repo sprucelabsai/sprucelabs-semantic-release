@@ -10,27 +10,42 @@ module.exports = options => {
 
 	const publish = ['@semantic-release/github']
 
+	const prepare = [
+		{
+			path: '@semantic-release/changelog',
+			changelogFile: options.changelogFile || 'CHANGELOG.md'
+		}
+	]
+
+	const plugins = [
+		'@semantic-release/commit-analyzer',
+		'@semantic-release/release-notes-generator'
+	]
+
 	if (options.npmPublish === true) {
 		publish.unshift('@semantic-release/npm')
 		verifyConditions.unshift('@semantic-release/npm')
+		prepare.push('@semantic-release/npm')
+		plugins.push('@semantic-release/npm')
 	}
 
+	prepare.push('@semantic-release/git')
+	plugins.push('@semantic-release/github')
+
 	return {
-		branches: options.branches || ['dev'],
+		branches: options.branches || [
+			'master',
+			'qa',
+			{ name: 'dev', prerelease: true }
+		],
 		npmPublish: options.npmPublish === true,
+		plugins,
 		publishConfig: {
 			registry: 'https://registry.npmjs.org/',
 			tag: 'beta'
 		},
 		verifyConditions,
-		prepare: [
-			{
-				path: '@semantic-release/changelog',
-				changelogFile: options.changelogFile || 'CHANGELOG.md'
-			},
-			'@semantic-release/npm',
-			'@semantic-release/git'
-		],
+		prepare,
 		publish,
 		success: ['@semantic-release/github'],
 		fail: ['@semantic-release/github'],
@@ -38,6 +53,7 @@ module.exports = options => {
 			config: 'conventional-changelog-sprucelabs'
 		},
 		analyzeCommits: {
+			config: 'conventional-changelog-sprucelabs',
 			releaseRules: [
 				// Custom Rules
 				{ type: 'BREAKING', release: 'major' },
@@ -49,7 +65,7 @@ module.exports = options => {
 				{ type: 'minor', release: 'minor' },
 
 				// Custom default catch-all, treat it like
-				{ type: '/.*/', release: 'patch' }
+				{ release: 'patch' }
 			]
 		}
 	}
