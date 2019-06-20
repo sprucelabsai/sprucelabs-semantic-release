@@ -43,7 +43,10 @@ module.exports = options => {
 			'@semantic-release/npm',
 			{ npmPublish: options.npmPublish === true }
 		])
-		prepare.push('@semantic-release/npm')
+		prepare.push([
+			'@semantic-release/npm',
+			{ npmPublish: options.npmPublish === true }
+		])
 	}
 
 	if (options.npmPublish === true) {
