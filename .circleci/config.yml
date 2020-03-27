@@ -47,8 +47,8 @@ workflows:
       #   - test:
       #       context: public_package_publish
       - do_release:
-          requires:
-            - test
+          #   requires:
+          #     - test
           context: public_package_publish
           filters:
             branches:
