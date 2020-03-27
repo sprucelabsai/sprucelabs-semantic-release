@@ -15,7 +15,11 @@ module.exports = options => {
 		.toString()
 		.trim()
 
-	const isReleaseBranch = branches.find(b => b === currentBranch)
+	const isReleaseBranch = branches.find(
+		b =>
+			b === currentBranch ||
+			(typeof b === 'object' && typeof b.prerelease !== true)
+	)
 
 	const verifyConditions = [
 		'@semantic-release/changelog',
