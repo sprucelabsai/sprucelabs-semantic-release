@@ -18,6 +18,7 @@ function spruceSemanticRelease(options?: {
 	 */
 	releaseMessage?: string
 }) {
+	console.log({ options })
 	if (!options) {
 		options = {}
 	}
