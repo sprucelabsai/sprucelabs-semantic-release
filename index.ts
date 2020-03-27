@@ -97,6 +97,45 @@ function spruceSemanticRelease(options?: {
 
 	plugins.push('@semantic-release/github')
 
+	console.log(
+		require('util').inspect(
+			{
+				branches,
+				plugins,
+				publishConfig: {
+					registry: 'https://registry.npmjs.org/',
+					tag: 'beta'
+				},
+				verifyConditions,
+				prepare,
+				publish,
+				success: ['@semantic-release/github'],
+				fail: ['@semantic-release/github'],
+				generateNotes: {
+					config: 'conventional-changelog-sprucelabs'
+				},
+				analyzeCommits: {
+					config: 'conventional-changelog-sprucelabs',
+					releaseRules: [
+						// Custom Rules
+						{ type: 'BREAKING', release: 'major' },
+						{ type: 'breaking', release: 'major' },
+						{ type: 'major', release: 'major' },
+
+						// Angular
+						{ type: 'feat', release: 'minor' },
+						{ type: 'minor', release: 'minor' },
+
+						// Custom default catch-all, treat it as a patch version
+						{ release: 'patch' }
+					]
+				}
+			},
+			null,
+			9999
+		)
+	)
+
 	return {
 		branches,
 		plugins,

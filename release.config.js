@@ -7,8 +7,7 @@ const config = spruceSemanticRelease({
 		{ name: 'canary', prerelease: true },
 		{ name: 'prerelease/*', prerelease: true }
 	],
-	releaseMessage:
-		'chore(release): ${nextRelease.version} [skip-ci-version]\n\n${nextRelease.notes}'
+	releaseMessage: 'chore(release): ${nextRelease.version} [skip-ci-version]'
 })
 
 module.exports = config
