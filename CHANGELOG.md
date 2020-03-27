@@ -1,3 +1,5 @@
+## [3.0.4-prerelease-combined-dependencies.3](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.4-prerelease-combined-dependencies.2...v3.0.4-prerelease-combined-dependencies.3) (2020-03-27)
+
 ## [3.0.4-prerelease-combined-dependencies.2](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.4-prerelease-combined-dependencies.1...v3.0.4-prerelease-combined-dependencies.2) (2020-03-27)
 
 ## [3.0.4-prerelease-combined-dependencies.1](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.3...v3.0.4-prerelease-combined-dependencies.1) (2020-03-27)
