@@ -106,25 +106,25 @@ function spruceSemanticRelease(options?: {
 			'@semantic-release/npm',
 			{ npmPublish: options.npmPublish === true }
 		])
+
+		prepare.push([
+			'@semantic-release/git',
+			{
+				message:
+					options.releaseMessage ||
+					'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+			}
+		])
+
+		plugins.push('@semantic-release/git')
+
+		plugins.push('@semantic-release/github')
 	}
 
 	if (options.npmPublish === true) {
 		publish.unshift('@semantic-release/npm')
 		verifyConditions.unshift('@semantic-release/npm')
 	}
-
-	prepare.push([
-		'@semantic-release/git',
-		{
-			message:
-				options.releaseMessage ||
-				'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
-		}
-	])
-
-	plugins.push('@semantic-release/git')
-
-	plugins.push('@semantic-release/github')
 
 	return {
 		branches,
