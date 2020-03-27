@@ -1,13 +1,7 @@
-const spruceSemanticRelease = require('./build/index').default
+const spruceSemanticRelease = require('./build/index')
 
-const config = spruceSemanticRelease({
-	npmPublish: true,
-	branches: [
-		{ name: 'dev', channel: 'beta' },
-		{ name: 'canary', prerelease: true },
-		{ name: 'prerelease-*', prerelease: true }
-	],
-	releaseMessage: 'chore(release): ${nextRelease.version} [skip-ci-version]'
+const config = spruceSemanticRelease.default({
+	config: spruceSemanticRelease.ReleaseConfiguration.Package
 })
 
 module.exports = config

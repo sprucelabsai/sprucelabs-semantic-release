@@ -4,7 +4,37 @@ export type Branch =
 
 export type Plugin = string | [string, Record<string, any>]
 
+/** The default release configuration */
+export enum ReleaseConfiguration {
+	/** Apps like skills */
+	App = 'app',
+	/** Packages / libraries that are published publicly */
+	Package = 'package'
+}
+
+export const defaultOptions = {
+	[ReleaseConfiguration.App]: {
+		branches: [
+			'master',
+			{ name: 'alpha', prerelease: true },
+			{ name: 'qa', prerelease: true },
+			{ name: 'dev', prerelease: true }
+		]
+	},
+	[ReleaseConfiguration.Package]: {
+		npmPublish: true,
+		branches: [
+			{ name: 'dev', channel: 'beta' },
+			{ name: 'canary', prerelease: true },
+			{ name: 'prerelease-*', prerelease: true }
+		],
+		releaseMessage: 'chore(release): ${nextRelease.version} [skip-ci-version]'
+	}
+}
+
 function spruceSemanticRelease(options?: {
+	/** Use a pre-defined release configuration as your base options. */
+	config?: ReleaseConfiguration
 	/** Override the default branch configuration. */
 	branches?: Branch[]
 	/** Set the changelog filename to use. Default is CHANGELOG.md */
@@ -22,12 +52,12 @@ function spruceSemanticRelease(options?: {
 		options = {}
 	}
 
-	const branches: Branch[] = options.branches || [
-		'master',
-		{ name: 'alpha', prerelease: true },
-		{ name: 'qa', prerelease: true },
-		{ name: 'dev', prerelease: true }
-	]
+	if (options.config && defaultOptions[options.config]) {
+		options = defaultOptions[options.config]
+	}
+
+	const branches: Branch[] =
+		options.branches || defaultOptions[ReleaseConfiguration.App].branches
 
 	const currentBranch = require('child_process')
 		.execSync('git rev-parse --abbrev-ref HEAD')
