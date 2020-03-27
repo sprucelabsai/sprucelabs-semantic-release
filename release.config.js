@@ -5,7 +5,7 @@ const config = spruceSemanticRelease({
 	branches: [
 		{ name: 'dev', channel: 'beta' },
 		{ name: 'canary', prerelease: true },
-		{ name: 'prerelease/*', prerelease: true }
+		{ name: 'prerelease-*', prerelease: true }
 	],
 	releaseMessage: 'chore(release): ${nextRelease.version} [skip-ci-version]'
 })
