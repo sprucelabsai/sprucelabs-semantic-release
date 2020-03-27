@@ -1,9 +1,28 @@
-module.exports = options => {
+export type Branch =
+	| string
+	| { name: string; prerelease?: boolean; channel?: string }
+
+export type Plugin = string | [string, Record<string, any>]
+
+function spruceSemanticRelease(options?: {
+	/** Override the default branch configuration. */
+	branches?: Branch[]
+	/** Set the changelog filename to use. Default is CHANGELOG.md */
+	changelogFile?: string
+	/** Must be set to true to publish the package to NPM */
+	npmPublish?: boolean
+	/**
+	 * Git message to use when creating a new release.
+	 *
+	 * Default: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+	 */
+	releaseMessage?: string
+}) {
 	if (!options) {
 		options = {}
 	}
 
-	const branches = options.branches || [
+	const branches: Branch[] = options.branches || [
 		'master',
 		{ name: 'alpha', prerelease: true },
 		{ name: 'qa', prerelease: true },
@@ -15,11 +34,16 @@ module.exports = options => {
 		.toString()
 		.trim()
 
-	const isReleaseBranch = branches.find(
-		b =>
+	const isReleaseBranch = branches.find(b => {
+		if (
 			b === currentBranch ||
-			(typeof b === 'object' && typeof b.prerelease !== true)
-	)
+			(typeof b === 'object' && b.prerelease !== true)
+		) {
+			return true
+		}
+
+		return false
+	})
 
 	const verifyConditions = [
 		'@semantic-release/changelog',
@@ -30,7 +54,7 @@ module.exports = options => {
 
 	const prepare = []
 
-	const plugins = [
+	const plugins: Plugin[] = [
 		'@semantic-release/commit-analyzer',
 		'@semantic-release/release-notes-generator'
 	]
@@ -47,6 +71,7 @@ module.exports = options => {
 			'@semantic-release/npm',
 			{ npmPublish: options.npmPublish === true }
 		])
+
 		prepare.push([
 			'@semantic-release/npm',
 			{ npmPublish: options.npmPublish === true }
@@ -59,7 +84,16 @@ module.exports = options => {
 	}
 
 	prepare.push('@semantic-release/git')
-	plugins.push('@semantic-release/git')
+
+	plugins.push([
+		'@semantic-release/git',
+		{
+			message:
+				options.releaseMessage ||
+				'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+		}
+	])
+
 	plugins.push('@semantic-release/github')
 
 	return {
@@ -95,3 +129,5 @@ module.exports = options => {
 		}
 	}
 }
+
+export default spruceSemanticRelease
