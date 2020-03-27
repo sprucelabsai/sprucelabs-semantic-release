@@ -17,6 +17,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "ec:9f:2e:aa:1f:c9:ab:49:57:8f:c0:cd:2e:5b:f3:b0"
+      - checkout
       - run:
           command: |
             COMMIT_MSG=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
@@ -24,7 +25,6 @@ jobs:
               echo "[skip-ci-version] detected. Stopping."
               circleci step halt
             fi
-      - checkout
       - run: yarn install --ignore-scripts
       - run: yarn run build
       - run: git config --global user.email "$GIT_AUTHOR_EMAIL"
