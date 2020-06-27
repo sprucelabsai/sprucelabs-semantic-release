@@ -23,6 +23,10 @@
 		{
 			"name": "Ken Goldfarb",
 			"email": "ken@sprucelabs.ai"
+		},
+		{
+			"name": "Ryan Johnson",
+			"email": "ryan@sprucelabs.ai"
 		}
 	],
 	"engines": {
