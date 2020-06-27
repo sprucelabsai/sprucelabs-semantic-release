@@ -1,3 +1,5 @@
+## [3.0.5](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.4...v3.0.5) (2020-06-27)
+
 ## [3.0.4](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.3...v3.0.4) (2020-03-27)
 
 ## [3.0.4-prerelease-combined-dependencies.3](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.4-prerelease-combined-dependencies.2...v3.0.4-prerelease-combined-dependencies.3) (2020-03-27)
