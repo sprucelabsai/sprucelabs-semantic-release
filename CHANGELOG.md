@@ -1,3 +1,10 @@
+# [4.0.0](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.5...v4.0.0) (2020-07-02)
+
+
+### Breaking Changes
+
+* master does everything ([2427d79](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/2427d79))
+
 ## [3.0.5](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.4...v3.0.5) (2020-06-27)
 
 ## [3.0.4](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.3...v3.0.4) (2020-03-27)
