@@ -4,30 +4,18 @@ export type Branch =
 
 export type Plugin = string | [string, Record<string, any>]
 
-/** The default release configuration */
 export enum ReleaseConfiguration {
-	/** Apps like skills */
-	App = 'app',
-	/** Packages / libraries that are published publicly */
+	Skill = 'skill',
 	Package = 'package'
 }
 
 export const defaultOptions = {
-	[ReleaseConfiguration.App]: {
-		branches: [
-			'master',
-			{ name: 'alpha', prerelease: true },
-			{ name: 'qa', prerelease: true },
-			{ name: 'dev', prerelease: true }
-		]
+	[ReleaseConfiguration.Skill]: {
+		branches: ['master']
 	},
 	[ReleaseConfiguration.Package]: {
 		npmPublish: true,
-		branches: [
-			{ name: 'dev', channel: 'beta' },
-			{ name: 'canary', prerelease: true },
-			{ name: 'prerelease-*', prerelease: true }
-		],
+		branches: ['master'],
 		releaseMessage: 'chore(release): ${nextRelease.version} [skip-ci-version]'
 	}
 }
@@ -57,7 +45,7 @@ function spruceSemanticRelease(options?: {
 	}
 
 	const branches: Branch[] =
-		options.branches || defaultOptions[ReleaseConfiguration.App].branches
+		options.branches || defaultOptions[ReleaseConfiguration.Skill].branches
 
 	const currentBranch = require('child_process')
 		.execSync('git rev-parse --abbrev-ref HEAD')
