@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.1...v4.0.2) (2020-07-02)
+
+
+### Bug Fixes
+
+* checkout in the correct order ([74c510a](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/74c510a))
+
 ## [4.0.1](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.0...v4.0.1) (2020-07-02)
 
 
