@@ -16,7 +16,7 @@ export const defaultOptions = {
 	[ReleaseConfiguration.Package]: {
 		npmPublish: true,
 		branches: ['master'],
-		releaseMessage: 'chore(release): ${nextRelease.version} [skip-ci-version]'
+		releaseMessage: 'chore(release): ${nextRelease.version} [npm-publish]'
 	}
 }
 

@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run: yarn install
       - run: yarn test
-  do_release:
+  npm_publish:
     docker:
       - image: circleci/node:12
     steps:
@@ -21,8 +21,8 @@ jobs:
       - run:
           command: |
             COMMIT_MSG=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
-            if [[ $COMMIT_MSG == *"[skip-ci-version]"* ]]; then
-              echo "[skip-ci-version] detected. Stopping."
+            if [[ $COMMIT_MSG == *"[npm-publish]"* ]]; then
+              echo "[npm-publish] detected. No publish necessary 👊"
               circleci step halt
             fi
       - run: yarn install --frozen-lockfile
@@ -34,6 +34,13 @@ jobs:
     docker:
       - image: circleci/node:12
     steps:
+      - run:
+          command: |
+            COMMIT_MSG=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
+            if [[ $COMMIT_MSG != *"[npm-publish]"* ]]; then
+              echo "[npm-publish] not detected. Not a taggable commit"
+              circleci step halt
+            fi
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
@@ -47,7 +54,7 @@ workflows:
     jobs:
       #   - test:
       #       context: public_package_publish
-      - do_release:
+      - npm_publish:
           #   requires:
           #     - test
           context: public_package_publish
@@ -58,7 +65,7 @@ workflows:
       - tag_latest:
           context: public_package_publish
           requires:
-            - do_release
+            - npm_publish
           filters:
             branches:
               only:
