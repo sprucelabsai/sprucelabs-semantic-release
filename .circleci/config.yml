@@ -34,6 +34,7 @@ jobs:
     docker:
       - image: circleci/node:12
     steps:
+      - checkout
       - run:
           command: |
             COMMIT_MSG=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
@@ -44,7 +45,6 @@ jobs:
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-      - checkout
       - run:
           name: Tag latest
           command: npm dist-tag add $(node -p "require('./package.json').name")@$(npm v . dist-tags.beta) latest
