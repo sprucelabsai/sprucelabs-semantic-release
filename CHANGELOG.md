@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.0...v4.0.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* following latest workflow, don't double tag ([7881b21](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/7881b21))
+
 # [4.0.0](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v3.0.5...v4.0.0) (2020-07-02)
 
 
