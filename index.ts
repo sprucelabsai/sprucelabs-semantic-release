@@ -11,7 +11,7 @@ export enum ReleaseConfiguration {
 export const defaultOptions = {
 	[ReleaseConfiguration.Package]: {
 		npmPublish: true,
-		branches: [{ name: 'master', channel: 'beta' }],
+		branches: [{ name: 'master', channel: 'latest' }],
 		releaseMessage: 'chore(release): ${nextRelease.version} [npm-publish]'
 	}
 }
