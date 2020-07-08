@@ -5,15 +5,15 @@ export type Branch =
 export type Plugin = string | [string, Record<string, any>]
 
 export enum ReleaseConfiguration {
-	Package = 'package'
+	Package = 'package',
 }
 
 export const defaultOptions = {
 	[ReleaseConfiguration.Package]: {
 		npmPublish: true,
 		branches: [{ name: 'master', channel: 'latest' }],
-		releaseMessage: 'chore(release): ${nextRelease.version} [npm-publish]'
-	}
+		releaseMessage: 'chore(release): ${nextRelease.version} [npm-publish]',
+	},
 }
 
 function spruceSemanticRelease(options?: {
@@ -48,7 +48,7 @@ function spruceSemanticRelease(options?: {
 		.toString()
 		.trim()
 
-	const isReleaseBranch = branches.find(b => {
+	const isReleaseBranch = branches.find((b) => {
 		if (
 			b === currentBranch ||
 			(typeof b === 'object' &&
@@ -63,7 +63,7 @@ function spruceSemanticRelease(options?: {
 
 	const verifyConditions = [
 		'@semantic-release/changelog',
-		'@semantic-release/github'
+		'@semantic-release/github',
 	]
 
 	const publish = ['@semantic-release/github']
@@ -72,25 +72,25 @@ function spruceSemanticRelease(options?: {
 
 	const plugins: Plugin[] = [
 		'@semantic-release/commit-analyzer',
-		'@semantic-release/release-notes-generator'
+		'@semantic-release/release-notes-generator',
 	]
 
 	// Only bump the package.json version and write the changelog if this is a release branch
 	if (isReleaseBranch) {
 		prepare.push({
 			path: '@semantic-release/changelog',
-			changelogFile: options.changelogFile || 'CHANGELOG.md'
+			changelogFile: options.changelogFile || 'CHANGELOG.md',
 		})
 
 		// NPM plugin handles bumping the package.json version
 		plugins.push([
 			'@semantic-release/npm',
-			{ npmPublish: options.npmPublish === true }
+			{ npmPublish: options.npmPublish === true },
 		])
 
 		prepare.push([
 			'@semantic-release/npm',
-			{ npmPublish: options.npmPublish === true }
+			{ npmPublish: options.npmPublish === true },
 		])
 
 		prepare.push([
@@ -98,8 +98,8 @@ function spruceSemanticRelease(options?: {
 			{
 				message:
 					options.releaseMessage ||
-					'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
-			}
+					'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+			},
 		])
 
 		plugins.push('@semantic-release/git')
@@ -117,7 +117,7 @@ function spruceSemanticRelease(options?: {
 		plugins,
 		publishConfig: {
 			registry: 'https://registry.npmjs.org/',
-			tag: 'beta'
+			tag: 'beta',
 		},
 		verifyConditions,
 		prepare,
@@ -125,7 +125,7 @@ function spruceSemanticRelease(options?: {
 		success: ['@semantic-release/github'],
 		fail: ['@semantic-release/github'],
 		generateNotes: {
-			config: 'conventional-changelog-sprucelabs'
+			config: 'conventional-changelog-sprucelabs',
 		},
 		analyzeCommits: {
 			config: 'conventional-changelog-sprucelabs',
@@ -140,9 +140,9 @@ function spruceSemanticRelease(options?: {
 				{ type: 'minor', release: 'minor' },
 
 				// Custom default catch-all, treat it as a patch version
-				{ release: 'patch' }
-			]
-		}
+				{ release: 'patch' },
+			],
+		},
 	}
 }
 
