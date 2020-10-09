@@ -1,3 +1,10 @@
+## [4.0.6](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.5...v4.0.6) (2020-10-09)
+
+
+### Bug Fixes
+
+* updated pkgs fixed major: not bumping monos ([ab0c1c5](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/ab0c1c5))
+
 ## [4.0.5](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.4...v4.0.5) (2020-07-08)
 
 ## [4.0.4](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.3...v4.0.4) (2020-07-02)
