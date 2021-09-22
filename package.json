@@ -5,14 +5,25 @@
 	},
 	"version": "4.0.6",
 	"description": "Sprucelabs standards for semantic releases",
+	"files": [
+		"build"
+	],
 	"main": "build/index.js",
 	"scripts": {
-		"build": "npm run clean && tsc",
-		"clean": "rm -rf build/",
+		"build.ci": "yarn build.tsc",
+		"build.dev": "yarn build.tsc",
+		"build.tsc": "npm run clean.build && tsc",
+		"clean": "yarn clean.build",
+		"clean.all": "yarn clean.dependencies && yarn clean.build",
+		"clean.build": "rm -rf build/",
+		"clean.dependencies": "rm -rf node_modules/ package-lock.json yarn.lock",
 		"lint": "eslint '**/*.ts' && tsc -p . --noEmit",
 		"lint.fix": "eslint --fix '**/*.ts'",
-		"watch": "chokidar 'index.ts' 'src/**/*.(js|jsx|ts|tsx)' -c 'npm run build'",
-		"release": "semantic-release"
+		"rebuild": "yarn clean.all && yarn && yarn build.dev",
+		"release": "semantic-release",
+		"test": "semantic-release --no-ci --dry-run",
+		"update.dependencies": "yarn clean.dependencies && yarn",
+		"watch": "chokidar 'index.ts' 'src/**/*.(js|jsx|ts|tsx)' -c 'npm run build'"
 	},
 	"repository": {
 		"type": "git",
@@ -30,24 +41,24 @@
 		}
 	],
 	"engines": {
-		"node": ">=8"
+		"node": ">=14"
 	},
 	"bugs": {
 		"url": "https://github.com/sprucelabsai/sprucelabs-semantic-release/issues"
 	},
 	"dependencies": {
-		"@semantic-release/changelog": "^5.0.1",
-		"@semantic-release/git": "^9.0.0",
+		"@semantic-release/changelog": "^6.0.0",
+		"@semantic-release/git": "^10.0.0",
 		"conventional-changelog-sprucelabs": "^1.1.2",
-		"semantic-release": "^17.1.2"
+		"semantic-release": "^18.0.0"
 	},
 	"devDependencies": {
-		"chokidar-cli": "^2.1.0",
-		"eslint": "^7.10.0",
-		"eslint-config-spruce": "^10.9.84",
-		"prettier": "^2.1.2",
-		"ts-node": "^9.0.0",
-		"typescript": "^4.0.3"
+		"@types/node": "^16.9.6",
+		"chokidar-cli": "^3.0.0",
+		"eslint": "^7.32.0",
+		"eslint-config-spruce": "^10.10.11",
+		"prettier": "^2.4.1",
+		"typescript": "^4.4.3"
 	},
 	"peerDependencies": {}
 }
