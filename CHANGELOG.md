@@ -1,3 +1,5 @@
+## [4.0.7](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.6...v4.0.7) (2021-09-22)
+
 ## [4.0.6](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.5...v4.0.6) (2020-10-09)
 
 
