@@ -104,7 +104,6 @@ function spruceSemanticRelease(options?: {
         ])
 
         plugins.push('@semantic-release/git')
-
         plugins.push('@semantic-release/github')
     }
 
@@ -136,7 +135,6 @@ function spruceSemanticRelease(options?: {
                 { type: 'breaking', release: 'major' },
                 { type: 'major', release: 'major' },
 
-                // Angular
                 { type: 'feat', release: 'minor' },
                 { type: 'minor', release: 'minor' },
 
