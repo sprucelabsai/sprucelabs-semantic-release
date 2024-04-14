@@ -12,6 +12,7 @@ jobs:
       - checkout
       - spruce/check_and_skip_if_npm_publish
       - run: yarn install
+      - run: yarn build.ci
       - run: yarn test
   npm_publish:
     docker:
