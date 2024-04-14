@@ -12,6 +12,7 @@
 	"scripts": {
 		"build.ci": "yarn build.tsc",
 		"build.dev": "yarn build.tsc",
+		"build.dist": "npm run clean && npm run build.tsc",
 		"build.tsc": "npm run clean.build && tsc",
 		"clean": "yarn clean.build",
 		"clean.all": "yarn clean.dependencies && yarn clean.build",
