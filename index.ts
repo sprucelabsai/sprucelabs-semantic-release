@@ -130,13 +130,12 @@ function spruceSemanticRelease(options?: {
         analyzeCommits: {
             config: 'conventional-changelog-sprucelabs',
             releaseRules: [
-                // Custom Rules
                 { type: 'BREAKING', release: 'major' },
                 { type: 'breaking', release: 'major' },
                 { type: 'major', release: 'major' },
-
                 { type: 'feat', release: 'minor' },
                 { type: 'minor', release: 'minor' },
+                { type: 'bug', release: 'patch' },
 
                 // Custom default catch-all, treat it as a patch version
                 { release: 'patch' },
