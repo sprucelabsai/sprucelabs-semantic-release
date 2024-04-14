@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 orbs:
   spruce: sprucelabsai/orb@1
 jobs:
@@ -44,7 +44,7 @@ jobs:
       - spruce/check_for_newline_only_diff
       - spruce/create_pr
 workflows:
-  version: 2
+  version: 2.1
   do_build:
     jobs:
       - test:
