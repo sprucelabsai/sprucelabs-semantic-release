@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.8...v5.0.0) (2024-04-14)
+
+
+### Breaking Changes
+
+* upgrade ([bfa8dbb](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/bfa8dbb))
+
+
+### Features
+
+* upgrade ([b5c0873](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/b5c0873))
+
 ## [4.0.8](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.7...v4.0.8) (2021-10-20)
 
 ## [4.0.7](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v4.0.6...v4.0.7) (2021-09-22)
