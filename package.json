@@ -51,13 +51,13 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "conventional-changelog-sprucelabs": "^2.0.1",
-        "semantic-release": "^23.0.8"
+        "semantic-release": "^23.1.1"
     },
     "devDependencies": {
-        "@types/node": "^20.12.7",
+        "@types/node": "^20.12.12",
         "chokidar-cli": "^3.0.0",
-        "eslint": "^9.0.0",
-        "eslint-config-spruce": "^11.1.1",
+        "eslint": "^9.3.0",
+        "eslint-config-spruce": "^11.2.19",
         "prettier": "^3.2.5",
         "typescript": "^5.4.5"
     },
