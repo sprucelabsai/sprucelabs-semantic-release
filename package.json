@@ -55,7 +55,7 @@
     },
     "resolutions": {
         "conventional-changelog-conventionalcommits": ">= 8.0.0",
-        "*/conventional-changelog-conventionalcommits": ">= 8.0.0"
+        "**/conventional-changelog-conventionalcommits": ">= 8.0.0"
     },
     "devDependencies": {
         "@types/node": "^20.14.8",
@@ -64,10 +64,6 @@
         "eslint-config-spruce": "^11.2.26",
         "prettier": "^3.3.2",
         "typescript": "^5.5.2"
-    },
-    "resolutions": {
-        "conventional-changelog-conventionalcommits": ">= 8.0.0",
-        "**/conventional-changelog-conventionalcommits": ">= 8.0.0"
     },
     "peerDependencies": {}
 }
