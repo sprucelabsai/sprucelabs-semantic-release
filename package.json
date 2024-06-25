@@ -62,9 +62,9 @@
         "typescript": "^5.5.2"
     },
     "resolutions": {
-        "conventional-changelog-conventionalcommits": ">= 8.0.0",
-        "*/conventional-changelog-conventionalcommits": ">= 8.0.0",
-        "**/conventional-changelog-conventionalcommits": ">= 8.0.0"
+        "conventional-changelog-core": "^7.0.0",
+        "*/conventional-changelog-core": "^7.0.0",
+        "**/conventional-changelog-core": "^7.0.0"
     },
     "peerDependencies": {}
 }
