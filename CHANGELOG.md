@@ -1,3 +1,8 @@
+## <small>5.0.3 (2025-11-08)</small>
+
+* Automated CI/CD permissions update ([c3a2174](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/c3a2174))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([2fde3f4](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/2fde3f4))
+
 ## [5.0.2](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v5.0.1...v5.0.2) (2024-06-25)
 
 ## [5.0.1](https://github.com/sprucelabsai/sprucelabs-semantic-release/compare/v5.0.0...v5.0.1) (2024-04-14)
