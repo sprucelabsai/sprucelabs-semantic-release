@@ -1,3 +1,7 @@
+## 6.0.0 (2025-11-09)
+
+* major: semantic-release upgrades ([f18f210](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/f18f210))
+
 ## <small>5.0.3 (2025-11-08)</small>
 
 * Automated CI/CD permissions update ([c3a2174](https://github.com/sprucelabsai/sprucelabs-semantic-release/commit/c3a2174))
