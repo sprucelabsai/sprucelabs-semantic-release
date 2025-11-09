@@ -1,70 +1,70 @@
 {
-    "name": "@sprucelabs/semantic-release",
-    "publishConfig": {
-        "access": "public"
+  "name": "@sprucelabs/semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "5.0.3",
+  "description": "Sprucelabs standards for semantic releases",
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
+  "scripts": {
+    "build.ci": "yarn build.tsc",
+    "build.dev": "yarn build.tsc",
+    "build.dist": "npm run clean && npm run build.tsc",
+    "build.tsc": "npm run clean.build && tsc",
+    "clean": "yarn clean.build",
+    "clean.all": "yarn clean.dependencies && yarn clean.build",
+    "clean.build": "rm -rf build/",
+    "clean.dependencies": "rm -rf node_modules/ package-lock.json yarn.lock",
+    "lint": "eslint '**/*.ts' && tsc -p . --noEmit",
+    "lint.fix": "eslint --fix '**/*.ts'",
+    "rebuild": "yarn clean.all && yarn && yarn build.dev",
+    "release": "semantic-release",
+    "test": "semantic-release --no-ci --dry-run",
+    "update.dependencies": "yarn clean.dependencies && yarn",
+    "watch": "chokidar 'index.ts' 'src/**/*.(js|jsx|ts|tsx)' -c 'npm run build.dev'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sprucelabsai/sprucelabs-semantic-release.git"
+  },
+  "author": "Sprucelabs",
+  "contributors": [
+    {
+      "name": "Ken Goldfarb",
+      "email": "ken@sprucelabs.ai"
     },
-    "version": "5.0.3",
-    "description": "Sprucelabs standards for semantic releases",
-    "files": [
-        "build"
-    ],
-    "main": "build/index.js",
-    "scripts": {
-        "build.ci": "yarn build.tsc",
-        "build.dev": "yarn build.tsc",
-        "build.dist": "npm run clean && npm run build.tsc",
-        "build.tsc": "npm run clean.build && tsc",
-        "clean": "yarn clean.build",
-        "clean.all": "yarn clean.dependencies && yarn clean.build",
-        "clean.build": "rm -rf build/",
-        "clean.dependencies": "rm -rf node_modules/ package-lock.json yarn.lock",
-        "lint": "eslint '**/*.ts' && tsc -p . --noEmit",
-        "lint.fix": "eslint --fix '**/*.ts'",
-        "rebuild": "yarn clean.all && yarn && yarn build.dev",
-        "release": "semantic-release",
-        "test": "semantic-release --no-ci --dry-run",
-        "update.dependencies": "yarn clean.dependencies && yarn",
-        "watch": "chokidar 'index.ts' 'src/**/*.(js|jsx|ts|tsx)' -c 'npm run build.dev'"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sprucelabsai/sprucelabs-semantic-release.git"
-    },
-    "author": "Sprucelabs",
-    "contributors": [
-        {
-            "name": "Ken Goldfarb",
-            "email": "ken@sprucelabs.ai"
-        },
-        {
-            "name": "Ryan Johnson",
-            "email": "ryan@sprucelabs.ai"
-        }
-    ],
-    "engines": {
-        "node": ">=14"
-    },
-    "bugs": {
-        "url": "https://github.com/sprucelabsai/sprucelabs-semantic-release/issues"
-    },
-    "dependencies": {
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/git": "^10.0.1",
-        "conventional-changelog-sprucelabs": "^2.0.5",
-        "semantic-release": "^24.2.0"
-    },
-    "devDependencies": {
-        "@types/node": "^22.8.6",
-        "chokidar-cli": "^3.0.0",
-        "eslint": "^9.13.0",
-        "eslint-config-spruce": "^11.2.26",
-        "prettier": "^3.3.3",
-        "typescript": "^5.6.3"
-    },
-    "resolutions": {
-        "conventional-changelog-core": "^7.0.0",
-        "*/conventional-changelog-core": "^7.0.0",
-        "**/conventional-changelog-core": "^7.0.0"
-    },
-    "peerDependencies": {}
+    {
+      "name": "Ryan Johnson",
+      "email": "ryan@sprucelabs.ai"
+    }
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "bugs": {
+    "url": "https://github.com/sprucelabsai/sprucelabs-semantic-release/issues"
+  },
+  "dependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-sprucelabs": "^2.0.5",
+    "semantic-release": "^25.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "chokidar-cli": "^3.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-spruce": "^11.2.26",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  },
+  "resolutions": {
+    "conventional-changelog-core": "^7.0.0",
+    "*/conventional-changelog-core": "^7.0.0",
+    "**/conventional-changelog-core": "^7.0.0"
+  },
+  "peerDependencies": {}
 }
